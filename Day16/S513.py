@@ -23,7 +23,7 @@ for word in gen3(line):
         counter[word] = 1
 max_count = max(counter.values())
 most_frequent = [k for k, v in counter.items() if v == max_count]
-most_frequent = sorted(most_frequent, key=lambda x : x[-3:])
+most_frequent = sorted(most_frequent, key=lambda x: x[-3:])
 
 print(f'Наиболее частое слово - "{most_frequent[0]}" - встречается'
     f' {max_count} раза')
