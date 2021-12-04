@@ -27,7 +27,7 @@ most_frequent = [k for k, v in counter.items() if v == max_count]
 print(counter)
 print(most_frequent)
 
-print(f' Наиболее частое слово {min(most_frequent)} встречается'
+print(f' Наиболее частое слово - "{min(most_frequent)}" - встречается'
     f' {max_count} раза')
 
 print('END')
