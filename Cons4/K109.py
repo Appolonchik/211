@@ -16,7 +16,7 @@ def gen3(s):
         if len(x) > 3:
             yield x
 
-for word in line:
+for word in gen3(line):
     if word in counter:
         counter[word] = counter[word] + 1
     else:
