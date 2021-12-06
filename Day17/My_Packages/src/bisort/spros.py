@@ -6,5 +6,3 @@
 
 def sprosi_chislo():
     return 42
-
-
