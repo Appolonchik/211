@@ -15,7 +15,7 @@ import bisort as bs
 from random import randint
 from time import process_time
 
-n = bs.sprosi_chislo(nmin=30, nmax=100_000)
+n = bs.sprosi_chislo(nmin=20, nmax=100_000)
 print(n)
 s1 = [randint(100_000_000, 999_999_999) for _ in range(n)]
 s2 = s1.copy()
@@ -24,14 +24,26 @@ print('Наша программа приступила к сортировке'
 t0 = process_time()
 bs.bist_sort2(s1)
 t1 = process_time() - t0
+print(f'Время нашей сортировки {n} составило {t1:8.3f} сек.')
 
-print(f'Время нашей сортировки составило {t1:8.3f} сек.')
 
 print('Python приступил к сортировке')
 t0 = process_time()
 s2.sort()
 t2 = process_time() - t0
 
-print(f'Время сортировки Python составило {t2:8.3f} сек.')
+print(f'Время сортировки Python {n} составило {t2:8.3f} сек.')
+
+print(f'Проверка равенства отсортированных список: {s1 == s2}')
+
+k = 0 if t2 == 0 else t1 / t2
+print(f'Список из {n} элементов сортируем в {k:8.3f} раз медленнее')
+
+# Выводим статистику
+print(f'Сумма 5 минимальных чисел равна:  {sum(s1[:5]):15}')
+print(f'Сумма 5 максимальных чисел равна: {sum(s1[-5:]):15}')
+print(f'Всего числе:                      {len(s1):15}')
+print(f'Среднее всех чисел:               {sum(s1)/len(s1):15.3f}')
+print(f'Медиана всех чисел                {s1[len(s1)//2]:15}')
 
 print('END')
