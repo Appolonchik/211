@@ -2,8 +2,8 @@
 # -*- coding: utf-8 -*-
 #*****************************************
 #src\bisort\__init__.py
-#*****************************************
+#*****************************************
 
-from .spros import sprosi_chislo
+from .spros import *
+from .mqsort import *
 
-print('Меня импортировали!!!')

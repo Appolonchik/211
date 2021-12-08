@@ -12,8 +12,26 @@
 Необходимо вывести статистику по отсортированному массиву.'''
 
 import bisort as bs
+from random import randint
+from time import process_time
 
-n = bs.sprosi_chislo()
+n = bs.sprosi_chislo(nmin=30, nmax=100_000)
 print(n)
+s1 = [randint(100_000_000, 999_999_999) for _ in range(n)]
+s2 = s1.copy()
+
+print('Наша программа приступила к сортировке')
+t0 = process_time()
+bs.bist_sort2(s1)
+t1 = process_time() - t0
+
+print(f'Время нашей сортировки составило {t1:8.3f} сек.')
+
+print('Python приступил к сортировке')
+t0 = process_time()
+s2.sort()
+t2 = process_time() - t0
+
+print(f'Время сортировки Python составило {t2:8.3f} сек.')
 
 print('END')
