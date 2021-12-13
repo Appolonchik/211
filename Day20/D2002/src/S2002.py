@@ -96,6 +96,6 @@ for n, b in spis:
 
 # Используем нашу функцию word_caclculate для подсчета количества слов и букв
 nw, nl = word_caclculate(song)
-
+print(f'\n\nВ песне {nw} слова и {nl} буквы.')
 
 print('END')
