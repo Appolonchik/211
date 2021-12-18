@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-def my_fun(*x, **y):
+def my_fun(*args, **kwargs):
     print(f'x = {x}, y = {y}')
     return True
 
