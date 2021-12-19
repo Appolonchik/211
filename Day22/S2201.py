@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 def my_fun(*args, **kwargs):
-    print(f'x = {args}, y = {kwargs}')
+    print(f'x = {args}, kwargs = {kwargs}')
     return True
 
 my_fun(11, 3, 'Ольга', [1, 2, 3, 4, 5], {2}, 33, y=22)
