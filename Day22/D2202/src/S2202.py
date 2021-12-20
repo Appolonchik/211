@@ -4,12 +4,16 @@
 #
 from skvek import Vektor
 
-a = Vektor(x=2, y=8)
-b = Vektor(r=5, alfa=120)
-d = Vektor(alfa=120, r=6)
-v = Vektor(x=6)
-y = Vektor(x=3, y=4, r=12, alfa='RRRRF')
-print(a)
+a = Vektor(x=2.8, y=8)
+b = Vektor(alfa=51, r=12)
+a.output()
+b.output()
+
+h = a.x
+print(f'{a.x=}')
+print(f'{a.y=}')
+print(f'{a.r=}')
+print(f'{a.alfa=}')
 
 
 print('END')
