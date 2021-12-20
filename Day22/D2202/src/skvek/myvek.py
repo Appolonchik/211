@@ -3,8 +3,7 @@
 # myvek.py
 #
 class Vektor(object):
-
-    def __init__(self, *, x=None, y=None, alfa=None, r=None):
+    def __init__(self, x=None, y=None, alfa=None, r=None):
         print('Я создаю новый пакет молока', x,y,alfa,r)
         self.x = x
         self.y = y

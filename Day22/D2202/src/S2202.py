@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # S2202.py
 #
-from skvek import Vector
+from skvek import Vektor
 
 a = Vektor(x=2, y=8)
 b = Vektor(r=5, alfa=120)

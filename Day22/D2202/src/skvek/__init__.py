@@ -2,4 +2,4 @@
 # -*- coding: utf-8 -*-
 # __init__.py
 #
-from .myvek import Vector
+from .myvek import Vektor
