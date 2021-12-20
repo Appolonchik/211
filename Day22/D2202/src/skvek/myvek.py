@@ -71,6 +71,21 @@ class Vektor(object):
     
     @property
     def alfa(self):
-        return self.__valfa    
+        return self.__valfa  
     
+    @alfa.setter
+    def alfa(self, new_alfa):
+        if not isinstance(new_alfa, (int, float, Decimal)):
+            raise NotCorrectData('alfa should be int of float')        
+        _alfa = new_alfa - floor((new_alfa+180) / 360) * 360
+        self.__valfa = Decimal(_alfa).quantize(TOCHNOST)
+        self.__vx = Decimal(self.r * Decimal(cos(radians(_alfa)))).quantize(TOCHNOST)
+        self.__vy = Decimal(self.r * Decimal(sin(radians(_alfa)))).quantize(TOCHNOST)        
     
+    def __str__(self):
+        res = f'x={self.x:9.4f} y={self.y:9.4f}    alfa={self.alfa:9.4f} r={self.r:9.4f}'
+        return res
+    
+    def __repr__(self):
+        res = f'Vector(x:{self.x:8.4f} y:{self.y:8.4f}    alfa:{self.alfa:8.4f} r:{self.r:8.4f})'
+        return res    
