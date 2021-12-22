@@ -12,7 +12,7 @@ class ALotofData(Exception):
 class NotCorrectData(Exception):
     pass
 
-TOCHNOST = Decimal('0.0001')
+TOCHNOST = Decimal('0.01')
 
 class Vektor(object):
     
@@ -45,7 +45,9 @@ class Vektor(object):
             if not (
                     isinstance(r, (int,float, Decimal)) 
                     and isinstance(alfa, (int, float, Decimal))):
-                raise NotCorrectData('r and alfa should be int of float')        
+                raise NotCorrectData('r and alfa should be int of float') 
+            if r < 0:
+                raise NotCorrectData('r souuld be >= 0')
             _alfa = alfa - floor((alfa+180) / 360) * 360
             self.__valfa = Decimal(_alfa).quantize(TOCHNOST)
             self.__vr = Decimal(r).quantize(TOCHNOST)
@@ -89,3 +91,34 @@ class Vektor(object):
     def __repr__(self):
         res = f'Vector(x:{self.x:8.4f} y:{self.y:8.4f}    alfa:{self.alfa:8.4f} r:{self.r:8.4f})'
         return res    
+    
+    def __add__(self, other):
+        if isinstance(other, Vektor):
+            return Vektor(x=self.x + other.x,
+                          y=self.y + other.y)
+        else:
+            return NotImplemented   
+        
+    def __sub__(self, other):
+        if isinstance(other, Vektor):
+            return Vektor(x=self.x - other.x,
+                          y=self.y - other.y)
+        else:
+            return NotImplemented   
+        
+    def __mul__(self, other):
+        if isinstance(other, (int, float, Decimal)):
+            return Vektor(x=self.x * Decimal(other),
+                          y=self.y * Decimal(other))
+        elif isinstance(other, Vektor):
+            return (self.x * other.x + self.y * other.y).quantize(TOCHNOST)
+        else:
+            return NotImplemented
+        
+    def __rmul__(self, other):
+        if isinstance(other, (int, float, Decimal)):
+            return Vektor(x=self.x * Decimal(other),
+                          y=self.y * Decimal(other))
+        else:
+            return NotImplemented        
+    #__rmul__ = __mul__ - Второй вариант решения чтобы не писать доп. функцию
