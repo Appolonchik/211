@@ -8,12 +8,12 @@
 # 1, 2, 6, 24, 120, 720, и т.д.
 
 
-# Импортируем Iterator для того чтобы без функции __next____ создание экземпляра 
+# Импортируем Iterator для того чтобы без функции __next____ создание экземпляра
 # класса было не возможно
 from collections.abc import Iterator
 from time import process_time
 
-class Fact(Iterator): # Базовый класс Iterator
+class Fact(Iterator): # Базовый  абстрактный класс Iterator заменяет класс object
     # Метод __init__ используется, как конструктор нового экземпляра класса
     def __init__(self, nmax=100):
         if not isinstance(nmax, int):
@@ -26,7 +26,7 @@ class Fact(Iterator): # Базовый класс Iterator
         self.__n = 1 # Номер значения факториала 1, 2, 3, 4, 5, 6, 7, 8 и т.д.
         self.__f = 1 # Значение факториала, которое мы уже посчитали 1, 2, 6, 24, 120 и т.д.
         self.__nmax = nmax # При достижении nmax необходимо остановить итерации
-        
+
     # Метод __next__ будет вызываться при каждой итерации экземпляра класса
     def __next__(self):
         self.__f = self.__f * self.__n # Домнажаем предыдущее значение на счетчик
@@ -35,7 +35,7 @@ class Fact(Iterator): # Базовый класс Iterator
         if self.__n > self.__nmax + 1:
             raise StopIteration
         return self.__f # Возвращем очередное значение факториала
-    
+
     # Функция __iter__ необходима, чтобы можно было использовать цикл for для итерации
     # Данная функция не нужна когда используется collections.abc
     def __iter__(self):
@@ -54,7 +54,7 @@ factor3 = Fact(15)
 
 for i, num in zip(range(1, 200), factor3):
     print(f'i = {i} for: {num}')
-    
+
 # Проверка класса Факториал с помощью функции list
 # Выводим первые 8 элементов в списке list
 test1 = list(Fact(8))
@@ -69,7 +69,7 @@ print(test2)
 # Выводим первые 15 элементов
 for x in Fact(15):
     print(x)
-    
+
 # Проверка класса Факториал с помощью генератора множеств
 # Выводим первые 9 элементов
 test3 = {x for x in Fact(9)}
@@ -83,4 +83,3 @@ print(test4)
 
 
 print('END')
-
