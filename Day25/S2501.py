@@ -7,21 +7,80 @@
 # Факториал это произведение чисел от 1 до n. n! = 1*2*3*4=14
 # 1, 2, 6, 24, 120, 720, и т.д.
 
+
+# Импортируем Iterator для того чтобы без функции __next____ создание экземпляра 
+# класса было не возможно
+from collections.abc import Iterator
 from time import process_time
 
+class Fact(Iterator): # Базовый класс Iterator
+    # Метод __init__ используется, как конструктор нового экземпляра класса
+    def __init__(self, nmax=100):
+        if not isinstance(nmax, int):
+            raise ValueError('nmax should be int')
+        if nmax < 1:
+            raise ValueError('nmax should be > 0')
+        if nmax > 100:
+            raise ValueError('nmax should be <= 100')
+        # Запоминаем первое значение для нашей последовательности факториалов
+        self.__n = 1 # Номер значения факториала 1, 2, 3, 4, 5, 6, 7, 8 и т.д.
+        self.__f = 1 # Значение факториала, которое мы уже посчитали 1, 2, 6, 24, 120 и т.д.
+        self.__nmax = nmax # При достижении nmax необходимо остановить итерации
+        
+    # Метод __next__ будет вызываться при каждой итерации экземпляра класса
+    def __next__(self):
+        self.__f = self.__f * self.__n # Домнажаем предыдущее значение на счетчик
+        self.__n += 1 # Увеличиваем счетчик на 1
+        # При достижении значения nmax прекращаем итерации путем выброса исключения StopIteration
+        if self.__n > self.__nmax + 1:
+            raise StopIteration
+        return self.__f # Возвращем очередное значение факториала
+    
+    # Функция __iter__ необходима, чтобы можно было использовать цикл for для итерации
+    # Данная функция не нужна когда используется collections.abc
+    def __iter__(self):
+        return self
 
-def faktor(n):
-    f = 1
-    for m in range(1, n + 1):
-        f *= m
-    return f
+# Проверка Функции генератора с помощью функции next
+factor = Fact(12) # в скобках мы указываем максимальное количество итераций
+print(next(factor))
+print(next(factor))
+print(next(factor))
+print(next(factor))
+print(next(factor))
 
-x = 10_000
-t0 = process_time()
-print(f' x = {x}     len(x!) = {len(str(faktor(x)))}')
-t = process_time() - t0
-print(f'Время работы программы составило {t} сек.')
+# Проверка Функции генератора с помощью цикла for
+factor3 = Fact(15)
+
+for i, num in zip(range(1, 200), factor3):
+    print(f'i = {i} for: {num}')
+    
+# Проверка класса Факториал с помощью функции list
+# Выводим первые 8 элементов в списке list
+test1 = list(Fact(8))
+print(test1)
+
+# Проверка класса Факториал с помощью генератора списков
+# Выводим первые 11 элементов
+test2 = [x for x in Fact(11)]
+print(test2)
+
+# Проверка класса Факториал с помощью цикла for
+# Выводим первые 15 элементов
+for x in Fact(15):
+    print(x)
+    
+# Проверка класса Факториал с помощью генератора множеств
+# Выводим первые 9 элементов
+test3 = {x for x in Fact(9)}
+print(test3)
+
+# Превращение в множество результата работы нашего генератора
+# Выводим первые 10 элементов
+test4 = set(Fact(10))
+print(test4)
 
 
 
 print('END')
+
