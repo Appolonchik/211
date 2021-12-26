@@ -33,7 +33,7 @@ print(f'\nВ тексте txt - {len(txt.split())} слов')
 
 s1 = s1.lower().strip()
 dsimbols = {}
-    
+
 for letter in s1:
     if letter in dsimbols:
         dsimbols[letter] += 1
