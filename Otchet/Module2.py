@@ -31,7 +31,7 @@ print(f'\nВ тексте txt - {nl} буквы')
 
 print(f'\nВ тексте txt - {len(txt.split())} слов')
 
-s1 = s1.lower().strip()
+s1 = s1.lower()
 dsimbols = {}
     
 for letter in s1:
